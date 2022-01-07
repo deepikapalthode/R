@@ -1,0 +1,7 @@
+install.packages("xlsx")
+library("xlsx")
+data <- read.csv("/home/deep/R_deepika/position_salaries.csv")
+show(data)
+View(data)
+class(data)
+tail(data,3)
