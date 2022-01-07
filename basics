@@ -1,0 +1,1203 @@
+Basic data types
+R Programming works with numerous data types, including
+    • Scalars
+    • Vectors (numeric, integer, raw, complex, character, logical)
+    • Matrices
+    • Data frames
+    • Lists
+    • We can check the type of a variable with the class function 
+    • Decimal values are called numeric in R. It is the default computational data type. 
+    • In R programming, the very basic data types are the R-objects called vectors which hold elements of different classes as shown below. 
+
+Vector Data Type
+
+Example
+
+R code
+Logical
+TRUE, FALSE
+v <- TRUE
+print(class(v))
+[1] "logical"
+Numeric
+12.3, 5, 999
+v <- 23.5
+print(class(v))
+[1] "numeric"
+Integer
+2L, 34L, 0L
+v <- 2L
+print(class(v))
+[1] "integer"
+Complex
+3 + 2i
+v <- 2+5i
+print(class(v))
+[1] "complex"
+Character
+
+'a' , '"good", "TRUE", '23.4'
+v <- "TRUE"
+print(class(v))
+[1] "character".
+NOTE: There is no seperate string datatype in R. All strings and characters belong to class character only.
+Raw
+"Hello" is stored as 48 65 6c 6c 6f
+v <- charToRaw("Hello")
+print(class(v))
+[1] "raw"
+
+charToRaw("hello")
+[1] 68 65 6c 6c 6f
+
+Even if we assign an integer to a variable k, it is still being saved as a numeric value.
+
+class(5)
+[1] "numeric"
+
+is.integer(5)
+[1] FALSE
+Intger:
+In order to create an integer variable in R, we invoke the integer function. We can be assured that y is indeed an integer by applying the is.integer function. 
+is.integer(y)
+[1] TRUE
+We can also declare an integer by appending an L suffix. 
+is.integer(25L)
+[1] TRUE
+
+Typecasting:
+we can coerce a numeric value into an integer with the as.integer function. 
+as.integer(7.9)
+[1] 7
+And we can parse a string for decimal values in much the same way. 
+as.integer("7.9")
+[1] 7
+On the other hand, it is erroneous trying to parse a non-decimal string. 
+as.integer("hello")
+[1] NA
+Warning message:
+NAs introduced by coercion 
+
+When performing arithmetic on logical values, TRUE has the value 1, while FALSE has value 0. 
+as.integer(TRUE)
+[1] 1
+
+R is case-sensitive
+class(true)
+Error: object 'true' not found
+> class(TRUE)
+[1] "logical"
+
+Complex:
+A compex value is defined in R using imaginary value i
+z= 1 + 2i
+> class(z)
+[1] "complex"
+
+The following gives an error as −1 is not a complex value. 
+sqrt(-1)
+[1] NaN
+Warning message:
+In sqrt(-1) : NaNs produced
+
+Instead, we have to use the complex value −1 + 0i. 
+sqrt(-1 + 0i)
+[1] 0+1i
+
+An alternative is to coerce −1 into a complex value. 
+> sqrt(as.complex(-1))
+[1] 0+1i
+
+Logical:
+A logical value is created usually by comparision between variables.
+a = 5; b = 8
+c = a > b
+> c
+[1] FALSE
+logical operators are & (and), | (or), ! (not)
+f = 0 ; e = 1
+> f
+[1] 0
+> !e
+[1] FALSE
+> f & e
+[1] FALSE
+> f & f
+[1] FALSE
+> e & e
+[1] TRUE
+> f | e
+[1] TRUE
+p = TRUE ; q = FALSE
+p
+[1] TRUE
+> p & q
+[1] FALSE
+> p | q
+[1] TRUE
+> p|q
+[1] TRUE
+> !q
+[1] TRUE
+
+
+
+
+
+Character:
+A character object is used to represent string values in R. 
+We convert objects into character values with the as.character() function: 
+
+At the console, the script is evaluated as soon as the a line ends with a complete statement. 
+temp_a 
+Error: object 'temp_a' not found
+temp_b <- 80
+temp_c <- 100
+> temp_b
+[1] 80
+> temp_c
+[1] 100
+Error does not effect compilation of subsequent lines.
+
+temp_a ; temp_b <- 1 ; temp_c <- 2
+Error: object 'temp_a' not found
+> temp_b
+[1] 80
+> temp_c
+[1] 100
+
+Error in one term effects the complation of other terms in same line.
+
+> paste0("uygen","dorgi")
+[1] "uygendorgi"
+
+> paste("uygen","dorgi")
+[1] "uygen dorgi"
+
+print: is useful for generic printing of any object.
+> print("Year:",2019)
+Error in print.default("Year:", 2019) : invalid 'digits' argument
+> cat("year:",2019)
+year: 2019
+cat : Is useful for printing custom output. It converts its arguments to character vectors,  appends the given seperation string to each element and then outputs them.
+
+Syntax:
+cat(…, file="", sep=" ", append=FALSE)
+
+> v_num <- c(1:4)
+> cat(v_num, sep="\t")
+1       2       3       4
+
+sprintf: A wrapper for the C function sprintf, that returns a character vector containing a formatted combination of text and variable values.
+
+> sprintf("%s has %e momos","wangmo", 20)
+[1] "wangmo has 2.000000e+01 momos"
+
+> sprintf("%s has %g momos","wangmo", 20)
+[1] "wangmo has 20 momos"
+
+> sprintf("%s has %d momos","wangmo", 20)
+[1] "wangmo has 20 momos"
+
+substr: To extract a substring, we apply the substr function. Here is an example showing how to extract the substring between the third and twelfth positions in a string. 
+> substr("GNH-Gross National Happiness", start=1, stop=3) 
+[1] "GNH"
+
+sub: To replace the first occurrence of one word  by another word in the string, we apply the sub function. 
+> sub("momos", "chocolates", "dorgi has many momos") 
+[1] "dorgi has many chocolates"
+
+Variables: Variables store values. A variable can store anything that R outputs- eg: number, an object, a statistical result, vector, dataset etc.
+We can use that variable later simply by calling the name of the variable.
+To declare a variable, we need to assign a variable name. 
+The name should not have space. We can use _ to connect to words.
+
+To add a value to the variable, use <- or =
+
+[1] 56
+> y <- 25
+> y
+[1] 25
+> x-y
+[1] 31
+
+
+
+
+
+
+
+VECTORS: A vector is a one-dimensional array. It is a sequence of data elements of the same type. 
+To build a vector in R use the c() function which means to combine the elements into a vector.
+
+Single dimensional array with all members of same type.
+
+1
+2
+3
+4
+5
+6
+7
+  v[1]       v[2]       v[3]     v[4]      v[6]       v[7]      v[8]      
+Fig 5: Vector v of 7 member numbers
+
+v_num <- c(11, 5, 9)
+> v_num
+[1] 11  5  9
+
+> v_char <- c("apple","banana","orange") 
+> v_char
+[1] "apple"  "banana" "orange"
+> v_boolean <- c(TRUE,FALSE)
+> v_boolean
+[1]  TRUE FALSE
+
+Anonymous Vector: 
+> c("a","g","e","t")
+[1] "a" "g" "e" "t"
+
+Length of vector:
+> length(c("a", "b", "c", "d", "e")) 
+[1] 5
+
+Combining Vectors: Vectors can be combined via the function c. For examples, the following two vectors n and s are combined into a new vector containing elements from both vectors. 
+v_num <- c(11, 5, 9)
+> v_char <- c("apple","banana","orange") 
+> c(v_num,v_char)
+[1] "11"     "5"      "9"   "apple"  "banana" "orange"
+
+> v_char <- c("apple","banana","orange")
+> v_boolean <- c(TRUE,FALSE)
+> c(v_char,v_boolean)
+[1] "apple"  "banana" "orange" "TRUE"   "FALSE" 
+
+Value Coercion:
+In the code above, the numeric values are being coerced into character strings when the two vectors are combined. Also boolean values are coerced to character strings when two vectors are combined. The values are coerced to less restrictive datatypes always to maintain the consistency of the vector elements.
+
+Vector Arithmetic:
+Arithmetic operations of vectors are performed member-by-member.
+> v_num <- c(11, 5, 9)
+> v_num
+[1] 11  5  9
+> 5 + v_num
+[1] 16 10 14
+ 
+> v_num <- c(11, 5, 9)
+> v_num
+[1] 11  5  9
+> 5*v_num
+[1] 55 25 45
+
+> v_num <- c(11, 5, 9)
+> v_num
+[1] 11  5  9
+> 5-v_num
+[1] -6  0 -4
+
+> v_num <- c(11, 5, 9)
+> v_num
+[1] 11  5  9
+> v_num/5
+[1] 2.2 1.0 1.8
+
+Addition of two vectors: only vectors of same size can be added. If vectors are not of same size then their lengths should be multiple of each-other else an error in object length is displayed.
+> v_num1 <- c(1,2,3,4)
+> v_num2 <- c(4,4,4,4)
+> v_num1 + v_num2
+[1] 5 6 7 8
+
+NOTE 1: In code below the size of v_num1 is 4 elements and size of v_num2 is 3 elements.  4 is not a multiple of 3 hence an error of  “longer object length is not a multiple of shorter object length” is displayed.
+> v_num1 <- c(1,2,3,4)   
+> v_num2 <- c(4,4,4)
+> v_num1 + v_num2
+[1] 5 6 7 8
+Warning message:
+In v_num1 + v_num2 :
+  longer object length is not a multiple of shorter object length
+
+NOTE 2: In code below the size of v_num1 is 9 elements and size of v_num2 is 3 elements. 9 is multiple of 3 hence the elements of shorter vector will be repeated to match the longer vector elements.
+> v_num1 <- c(1,2,3,1,2,3,1,2,3)
+> v_num2 <- c(4,5,6)
+> v_num1 + v_num2
+[1] 5 7 9 5 7 9 5 7 9
+
+Subtraction of two vectors:
+> v_num1 = c(1,2,3,4)
+> v_num2 = c(4,4,4,4)
+> v_num1 - v_num2
+[1] -3 -2 -1  0
+
+Multiplication of two vectors:
+> v_num1 = c(1,2,3,4)
+> v_num2 = c(4,4,4,4)
+> v_num1 * v_num2
+[1]  4  8 12 16
+
+Division of two vectors:
+> v_num1 = c(1,2,3,4)
+> v_num2 = c(4,4,4,4)
+> v_num1 / v_num2
+[1] 0.25 0.50 0.75 1.00
+
+
+
+
+Arithmetic Operators in R:
+Operator
+Description
++
+Addition
+-
+Subtraction
+*
+Multiplication
+/
+Division
+^ or **
+Exponentiation
+%%
+Modulus
+
+> 5+8
+[1] 13
+> 2^4
+[1] 16
+> 2**3
+[1] 8
+> 3 + 2
+[1] 5
+> 3 - 5
+[1] -2
+> 4/3
+[1] 1.333333
+> (5+8)/2
+[1] 6.5
+> 25%%5
+[1] 0
+
+Indexing Vectors: To retrieve a vector member use sqaure bracket "[]" operator.
+The vector index is 1-based, to get first member of vector use vectorname[1].
+> v_num1 = c(1,2,3,4)
+> v_num1[2]
+[1] 2
+> v_num1[1]
+[1] 1
+
+NOTE: Vector indexing starts from 1 and not from 0.
+> v_num1[0]
+numeric(0)
+
+NOTE: out of index range values are shown as NA 
+> v_num1[5]
+[1] NA
+
+NOTE: For negative index, R vector skips that member and shows rest all members of that vector.
+v_num1
+[1] 1 2 3 4
+> v_num1[-1]
+[1] 2 3 4
+
+Short notation on creating vectors: 
+> v_numbers <- c(1:10)
+> v_numbers
+ [1]  1  2  3  4  5  6  7  8  9 10
+
+Slicing: Accessing specific rows and columns of the data based on some criteria is known as slicing.
+Vector slicing:
+> v_numbers[1:5]
+[1] 1 2 3 4 5
+
+Vector with duplicated values: a vector can have duplicate values.
+> v_num <- c(11, 5, 9, 9, 11)
+> v_num
+[1] 11  5  9  9 11
+
+Creating copy of vector: a block can be sliced from vector to create another vector using below code.
+v_fruits <- c("apple","banana","cherry","dates","eggfruit","fig","grapes","hackberry")
+> v_fruits
+
+> v_fruit_copy_member <- v_fruits[c(1,5)]
+> v_fruit_copy_member
+[1] "apple"    "eggfruit"
+
+The vector being created from another vector can be built using index range of original vector.
+> v_fruit_copy_range <- v_fruits[c(1:5)]
+> v_fruit_copy_range
+[1] "apple"    "banana"   "cherry"   "dates"    "eggfruit"
+
+The vector being created from another vector can have duplicate values.
+> v_fruit_copy_dupli <- v_fruits[c(1,2,3,4,4)]
+> v_fruit_copy_dupli
+[1] "apple"  "banana" "cherry" "dates"  "dates" 
+
+The vector being created from another vector can have values in any order.
+> v_fruit_copy_order <- v_fruits[c(10,8,3,4)]
+> v_fruit_copy_order
+[1] NA          "hackberry" "cherry"    "dates"
+
+Logical Indexing of vector: a new vector can be created from a given vector with use of logical indexing. Its members are TRUE if the corresponding members in the original vector are to be included in the new vector being created, and FALSE if otherwise.
+NOTE: The new vector is of same length as the original vector. 
+
+> v_fruits <- c("apple","banana","cherry","dates","eggfruit","fig","grapes","hackberry")
+> v_fruits
+[1] "apple"     "banana"    "cherry"    "dates"     "eggfruit"  "fig"       "grapes" "hackberry"
+
+> v_fruit_logical <- v_fruits[c(FALSE,TRUE,FALSE,TRUE)]
+> v_fruit_logical
+[1] "banana"    "dates"     "fig"       "hackberry"
+
+> v_fruit_logical
+[1] "banana"    "dates"     "fig"       "hackberry"
+
+Vector Labelling: names/labels can be given to vector members.
+> v_fruits   
+[1] "apple"     "banana"    "cherry"    "dates"     "eggfruit"  "fig"       "grapes"    "hackberry"
+names(v_fruits) = c("First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth")
+> v_fruits
+      First      Second       Third      Fourth       Fifth       Sixth     Seventh      Eighth 
+    "apple"    "banana"    "cherry"     "dates"  "eggfruit"       "fig"    "grapes" "hackberry" 
+
+v_fruits["Fifth"]
+     Fifth 
+"eggfruit" 
+
+> v_fruits["Third"]
+   Third 
+"cherry" 
+
+> v_fruits[6]
+Sixth 
+"fig" 
+
+MATRIX: A matrix is a 2-dimensional array that has m number of rows and n number of columns. 
+A matrix is a combination of two or more vectors with the same data type.
+
+
+2x2 Matrix									
+
+Column 1
+Column 2
+     Row 1
+1
+2
+     Row 2
+4
+7
+Fig 6: 2x2 Matrix
+
+3x3 Matrix						
+
+Column 1
+Column 2
+Column 3
+     Row 1
+1
+2
+5
+     Row 2
+4
+7
+3
+     Row 3
+8
+6
+9
+Fig 7: 3x3 Matrix
+
+3x2 Matrix
+
+Column 1
+Column 2
+Column 3
+     Row 1
+1
+2
+5
+     Row 2
+4
+7
+3
+Fig 8: 3x2 Matrix
+
+To create a matrix, R uses the function matrix().
+
+Syntax: matrix(data, nrow, ncol, byrow = FALSE)
+where data = members of matrix,
+nrow = number of rows
+ncol = number of columns
+
+NOTE: If we use 'byrow = TRUE' The rows are filled from the left to the right. If we use 'byrow = FALSE' then the matrix is filled from top to bottom.
+
+NOTE: By default the value of 'byrow' is FALSE
+
+Matrix with elements arranged Row wise
+> matrix_one <- matrix(c(1,2,3,4,5,6),nrow = 2,ncol = 3, byrow = TRUE)
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+
+
+Matrix with elements arranged Column wise
+> matrix_one <- matrix(c(1,2,3,4,5,6),nrow = 2,ncol = 3, byrow = FALSE)
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+Accessing Matrix element
+> matrix_one[2,2]
+[1] 4
+
+Accessing Matrix column
+> matrix_one[,2]
+[1] 3 4
+
+> matrix_one[ ,c(1,3)]
+  	[,1] [,2]
+[1,]    1    5
+[2,]    2    6
+
+Accessing Matrix Row
+> matrix_one[2,]
+[1] 2 4 6
+
+Accessing both rows and columns
+> matrix_one[1:2,1:2]
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+> matrix_one[1:1,1:2]
+[1] 1 3
+
+Print dimensions of the matrix : prints number of Rows and Cloumns
+>   matrix_one <- matrix(c(1,2,3,4,5,6),nrow = 2,ncol = 3, byrow = TRUE)
+>   matrix_one
+     [,1] [,2] [,3]
+[1,]    1    2    3
+[2,]    4    5    6
+> dim(matrix_one)
+[1] 2 3
+
+Matrix Size:
+When creating matrix using ncol or nrow attributes, the total number of matrix elements should be multiple/sub-multiple of ncol or row. Else a warning is shown. In R code issuing warning does not stop its execution.
+NOTE: We can suppress warnings using suppressWarnings() function. But is not a good practice to suppress warnings as warnings may be errors which may give faulty results. 
+
+> matrix_Col <-matrix(1:10, byrow = FALSE, ncol = 2)
+> matrix_Col
+     [,1] [,2]
+[1,]    1    6
+[2,]    2    7
+[3,]    3    8
+[4,]    4    9
+[5,]    5   10
+>   matrix_Col <-matrix(1:10, byrow = FALSE, ncol = 3)
+Warning message:
+In matrix(1:10, byrow = FALSE, ncol = 3) :
+  data length [10] is not a sub-multiple or multiple of the number of rows [4]
+> matrix_Col
+     [,1] [,2] [,3]
+[1,]    1    5    9
+[2,]    2    6   10
+[3,]    3    7    1
+[4,]    4    8    2
+matrix_Col <-matrix(1:10, byrow = FALSE, ncol = 4)
+Warning message:
+In matrix(1:10, byrow = FALSE, ncol = 4) :
+  data length [10] is not a sub-multiple or multiple of the number of rows [3]
+> matrix_Col
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    2    5    8    1
+[3,]    3    6    9    2
+
+
+> matrix_Col <-matrix(1:10, byrow = FALSE, ncol = 5)
+> matrix_Col
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    3    5    7    9
+[2,]    2    4    6    8   10
+
+Suppressing Warnings:  suppressWarnings(expression)
+> suppressWarnings(matrix_Col <-matrix(1:10, byrow = FALSE, ncol = 4))
+> matrix_Col
+     [,1] [,2] [,3] [,4]
+[1,]    1    4    7   10
+[2,]    2    5    8    1
+[3,]    3    6    9    2
+
+NOTE: To turn off warnings globally use : options(warn = -1)
+To turn on warnings back use:  options(warn = 0)
+It is not a good practice to turn off warnings globally.
+
+> matrix_country <-matrix(c("Afganistan","Bhutan","Canada","Dubai","Europe","Finland","Greece","Hungary"),nrow=4)
+> matrix_country
+     [,1]         [,2]     
+[1,] "Afganistan" "Europe" 
+[2,] "Bhutan"     "Finland"
+[3,] "Canada"     "Greece" 
+[4,] "Dubai"      "Hungary"
+
+Naming rows and columns in matrix
+> dimnames(matrix_country)←list(c("row1","row2","row3","row4"),
+c("column1","column2"))
+> matrix_country
+     column1      column2  
+row1 "Afganistan" "Europe" 
+row2 "Bhutan"     "Finland"
+row3 "Canada"     "Greece" 
+row4 "Dubai"      "Hungary"
+
+Adding Columns to matrix : cbind(vector to be added)
+>matrix_country <- matrix(c("Afganistan","Bhutan","Canada","Dubai","Europe","Finland",
+"Greece","Hungary"),nrow=4)
+> matrix_country
+     [,1]         [,2]     
+[1,] "Afganistan" "Europe" 
+[2,] "Bhutan"     "Finland"
+[3,] "Canada"     "Greece" 
+[4,] "Dubai"      "Hungary"
+
+> matrix_country_cbind <- cbind(matrix_country,c("India","Japan","Kenya","Laos"))
+> matrix_country_cbind
+     [,1]         [,2]      [,3]   
+[1,] "Afganistan" "Europe"  "India"
+[2,] "Bhutan"     "Finland" "Japan"
+[3,] "Canada"     "Greece"  "Kenya"
+[4,] "Dubai"      "Hungary" "Laos" 
+
+Adding Rows to matrix:  rbind(vector to be appended)
+> matrix_country <-matrix(c("Afganistan","Bhutan","Canada","Dubai","Europe","Finland","Greece",
+"Hungary"),nrow=4)
+> matrix_country
+     [,1]         [,2]     
+[1,] "Afganistan" "Europe" 
+[2,] "Bhutan"     "Finland"
+[3,] "Canada"     "Greece" 
+[4,] "Dubai"      "Hungary"
+
+> matrix_country_rbind <- rbind(matrix_country,c("Malaysia","Nigeria"))
+> matrix_country_rbind
+     [,1]         [,2]     
+[1,] "Afganistan" "Europe" 
+[2,] "Bhutan"     "Finland"
+[3,] "Canada"     "Greece" 
+[4,] "Dubai"      "Hungary"
+[5,] "Malaysia"   "Nigeria"
+
+Transpose of a Matrix: is obtained by interchaning rows and columns. 
+The function t(matrix) gives transpose of a matrix.
+
+
+
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+> t(matrix_one)
+     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+[3,]    5    6
+
+Combining Matrices: combining matrices column wise can be done using cbind(matrix1, matrix2)
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+> matrix_two
+     [,1] [,2] [,3]
+[1,]    7    9   11
+[2,]    8   10   12
+
+> cbind(matrix_one,matrix_two)
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    1    3    5    7    9   11
+[2,]    2    4    6    8   10   12
+
+NOTE: matrices in cbind should have same number of rows 
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+> matrix_two <-matrix(c(7,8,9,10,11,12,13,14,15),byrow =TRUE, nrow=3)
+> matrix_two
+     [,1] [,2] [,3]
+[1,]    7    8    9
+[2,]   10   11   12
+[3,]   13   14   15
+> cbind(matrix_one,matrix_two)
+Error in cbind(matrix_one, matrix_two) : 
+  number of rows of matrices must match (see arg 2)
+
+
+
+
+Matrix 1
+Rows = 2
+Columns = 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matrix Combined using cbind
+Rows = 2
+Columns = 5
+
+
+
+
+
+
+Matrix 2
+Rows = 2
+Columns = 3
+
+
+
+Fig 9: cbind illustration
+combining matrices row wise can be done using rbind(matrix1, matrix2)
+
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+> matrix_two
+     [,1] [,2] [,3]
+[1,]    7    9   11
+[2, ]    	   8       10     12
+> rbind(matrix_one,matrix_two)
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+[3,]    7    9   11
+[4,]    8   10   12
+NOTE: matrices in rbind should have same number of columns 
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+> matrix_two <-matrix(c(7,8,9,10),byrow =TRUE, ncol=2)
+> matrix_two
+     [,1] [,2]
+[1,]    7    8
+[2,]    9   10
+> rbind(matrix_one,matrix_two)
+Error in rbind(matrix_one, matrix_two) : 
+  number of columns of matrices must match (see arg 2)
+
+
+
+
+Matrix 1
+Rows = 2
+Columns = 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Matrix Combined using rbind
+Rows = 5
+Columns = 2
+
+
+
+
+
+
+Matrix 2
+Rows = 3
+Columns = 2
+
+
+
+
+Fig 10: rbind illustration
+
+Destroy a matrix: A matrix can be converted to a vector using c(matrix) function.
+> matrix_one
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+> c(matrix_one)
+[1] 1 2 3 4 5 6
+
+> matrix_two
+     [,1] [,2]
+[1,]    7    8
+[2,]    9   10
+> c(matrix_two)
+[1]  7  9  8 10
+
+LIST: is a vector containing members of different types. A list can contain various kinds of objects like matrices, dataframes, vectors, lists etc …
+Syntax: list(member1, member2,...)                         	                                                    
+
+                 
+matrix
+character
+dataframe
+number
+list
+string
+list[[1]]
+list[[2]]
+list[[3]]
+list[[4]]
+list[[5]]
+list[[6]]
+
+
+
+
+
+"A"
+
+
+
+
+
+
+
+
+
+
+123.45
+
+
+
+
+"Hello Bhutan"
+Fig 11: List illustration containing matrix, character, dataframe, number, list, string as members.
+
+> v_num <- 1:5
+> matrix_num<-matrix(1:6, ncol=2)
+> df_cars <- mtcars[1:3,]
+> list_one <- list(v_num, matrix_num, df_cars, "Bhutan")
+> list_one 
+[[1]]
+[1] 1 2 3 4 5
+
+[[2]]
+     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6
+
+[[3]]
+               mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+
+[[4]]
+[1] "Bhutan"
+
+Accessing members of the list: We need to use the [[index]] to select an element in a list. The value inside the double square bracket represents the position of the item in a list we want to extract. For instance, we pass 1 inside the parenthesis, R returns the first element present in the list.
+NOTE: The indexing starts from 1 in the list.
+
+> list_one[[2]]
+     [,1] [,2]
+[1,]    1    4
+[2,]    2    5
+[3,]    3    6
+
+List slice:  to retrieve slice of the list use single square bracket.
+> list_one[1]
+[[1]]
+[1] 1 2 3 4 5
+Accessing multiple columns in list:
+> list_one[c(1,4)]
+[[1]]
+[1] 1 2 3 4 5
+
+[[2]]
+[1] "Bhutan"
+
+Accessing the member element of a member in a list:
+> list_one[[1]][1] <- 11
+> list_one[1]
+[[1]]
+[1] 11  2  3  4  5
+
+Member names in a list: The member names appear with $ symbol.
+> list_general <- list(num = c(1,2,3), str = "Bhutan", cities = matrix(c("Albenia","Bahrain","Cochin","Dhaka"),nrow=2))
+> list_general
+$num
+[1] 1 2 3
+
+$str
+[1] "Bhutan"
+
+$cities
+     [,1]      [,2]    
+[1,] "Albenia" "Cochin"
+[2,] "Bahrain" "Dhaka"
+
+Accessing list members by name:
+> list_general["cities"]
+$cities
+     [,1]      [,2]    
+[1,] "Albenia" "Cochin"
+[2,] "Bahrain" "Dhaka" 
+> list_general[["cities"]]
+     [,1]      [,2]    
+[1,] "Albenia" "Cochin"
+[2,] "Bahrain" "Dhaka" 
+> list_general[["str"]]
+[1] "Bhutan"
+> list_general["str"]
+$str
+[1] "Bhutan"
+
+> list_general[c("str","cities")]
+$str
+[1] "Bhutan"
+
+$cities
+     [,1]      [,2]    
+[1,] "Albenia" "Cochin"
+[2,] "Bahrain" "Dhaka"
+
+Accessing list members by list$membername
+> list_general$cities
+     [,1]      [,2]    
+[1,] "Albenia" "Cochin"
+[2,] "Bahrain" "Dhaka" 
+> list_general$num  
+[1] 1 2 3
+
+
+DATAFRAME: A dataframe is used for storing data tables.
+It consists of list of vectors of equal length.
+Vector 1
+Vector 2
+Vector 3
+Vector1 member1
+Vector2 member1
+Vector3 member1
+Vector1 member2
+Vector2 member2
+Vector3 member2
+Vector1 member3
+Vector2 member3
+Vector3 member3
+
+Fig12: dataframe illustration
+> v_num <- c(1:4)
+> v_num
+[1] 1 2 3 4
+> v_bool <- c(TRUE,FALSE,FALSE,FALSE)
+> v_bool
+[1]  TRUE FALSE FALSE FALSE
+> v_fruits <- c("apple","banana","cherry","dates")
+> v_fruits
+[1] "apple"  "banana" "cherry" "dates" 
+> df <- data.frame(v_num,v_fruits,v_bool)
+> df
+  v_num v_fruits v_bool
+1     1    apple   TRUE
+2     2   banana  FALSE
+3     3   cherry  FALSE
+4     4    dates  FALSE
+
+Built-in DataFrames: mtcars is one of the defalut dataframes in R.
+The top line is called header and has names of the columns.  Each row has name of a car and its various parameter values.
+> mtcars
+                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+
+Accessing members of dataframe: dataframe members can be accessed by dataframe[row#,col#] or dataframe[row_name,col_name]
+> mtcars[1,2]
+[1] 6
+
+> mtcars["Datsun 710","mpg"]  
+[1] 22.8
+
+Number of rows in  a dataframe: are given by nrow(dataframe) function.
+> nrow(mtcars)
+[1] 32
+
+Number of columns in  a dataframe: are given by ncol(dataframe) function.
+> ncol(mtcars)
+[1] 11
+
+View  first 6 lines in dataframe: using head(dataframe) function
+> head(mtcars)
+                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+
+ head(dataframe, no_of_lines) is also possible in R.
+> head(mtcars,3)
+               mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+
+View R documentation about dafault dataframe : using help(dataframe). 
+R opens a help window on right  showing complete details about the dataframe.
+> help(mtcars)
+
+
+
+
+
+
+
+
+
+
+
+Fig 13: help window in R for dataframe mtcars. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Structure of dataframe: str(dataframe)
+> str(mtcars)
+'data.frame':   32 obs. of  11 variables:
+ $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+ $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+ $ disp: num  160 160 108 258 360 ...
+ $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+ $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+ $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+ $ qsec: num  16.5 17 18.6 19.4 17 ...
+ $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+ $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+ $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+ $ carb: num  4 4 1 1 2 1 4 2 2 4 …
+
+
+
+
+
+Accessing Columns in dataframe:  dataframe[["colname"]]
+> mtcars[["mpg"]]
+ [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0
+[28] 30.4 15.8 19.7 15.0 21.4
+
+dataframe[[col_number]]
+> mtcars[[2]]
+ [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+
+dataframe$col_name
+> mtcars$mpg
+ [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0
+[28] 30.4 15.8 19.7 15.0 21.4
+
+Slicing: Accessing specific rows and columns of the data based on some criteria is known as slicing.
+Fig 14: Illustration of
+mtcars dataframe slicing.                      
+
+mpg
+cyl
+disp
+hp
+drat
+wt
+Mazda RX4
+21.0
+6
+160.0
+110
+3.90
+2.620
+Mazda RX4 Wag
+21.0
+6
+160.0
+110
+3.90
+2.875
+Datsun 710
+22.8
+4
+108.0
+93
+3.85
+2.320
+Hornet 4 Drive
+21.4
+6
+258.0
+110
+3.08
+3.215
+Hornet Sportabout
+18.7
+8
+360.0
+175
+3.15
+3.440
+
+
